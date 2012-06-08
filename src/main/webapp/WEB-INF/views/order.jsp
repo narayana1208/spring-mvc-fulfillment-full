@@ -25,8 +25,8 @@
             	<p>Number: <c:out value="${invoice.number}"/></p>
             	<p>Description: <c:out value="${invoice.description}"/></p>
             	<p>Status: <c:out value="${invoice.status}"/></p>
+            	<a href="javascript:history.back()">Back</a> <input id="delete" type="submit" value="Delete" />
             </div> 
-            <a href="javascript:history.back()">Back</a> <input id="delete" type="submit" value="Delete" />
 		</div>	
 	</body>
 	<script>

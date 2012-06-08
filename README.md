@@ -1,4 +1,4 @@
-# Spring MVC and Force.com template application
+# Spring MVC and Force.com Fulfillment application
 
 This is a simple web application that uses Spring MVC and the Force.com REST API to implement a web service and an HTML front end to accept Invoice Statement IDs, store them locally, and pull invoice details from Force.com.
 

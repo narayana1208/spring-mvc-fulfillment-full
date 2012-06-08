@@ -51,6 +51,7 @@ public class OrderUIController {
 	public String getOrdersPage(Model model) {
 		model.addAttribute("order", new Order());
 		model.addAttribute("orders", orderService.listOrders());
+		
 		return "orders";
 	}
 
@@ -72,11 +73,5 @@ public class OrderUIController {
         model.addAttribute("invoice", invoice);
 		
 		return "order";
-	}
-	
-	@RequestMapping(value="{orderId}", method=RequestMethod.DELETE)
-	@ResponseStatus(HttpStatus.OK)
-	public void deleteOrder(@PathVariable Integer orderId) {
-		orderService.removeOrder(orderId);
 	}
 }

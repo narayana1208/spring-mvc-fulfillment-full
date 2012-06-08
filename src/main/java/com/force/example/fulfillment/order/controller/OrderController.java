@@ -94,8 +94,7 @@ public class OrderController {
 		orderService.removeOrder(orderId);
 	}
 	
-	// internal helpers
-	
+	// internal helper
 	private Map<String, String> validationMessages(Set<ConstraintViolation<Order>> failureSet) {
 		Map<String, String> failureMessageMap = new HashMap<String, String>();
 		for (ConstraintViolation<Order> failure : failureSet) {
