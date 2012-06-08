@@ -23,11 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.force.api.ApiException;
-
-import com.force.example.fulfillment.order.model.Invoice;
 import com.force.example.fulfillment.order.model.Order;
-import com.force.example.fulfillment.order.service.InvoiceService;
 import com.force.example.fulfillment.order.service.OrderService;
 
 @Controller
@@ -36,9 +32,6 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
-	
-	@Autowired
-	private InvoiceService invoiceService;
 	
 	private Validator validator;
 	
@@ -81,45 +74,18 @@ public class OrderController {
 		}
 	}
 	
-	@RequestMapping(method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody List<Order> getOrders() {
 		return orderService.listOrders();
 	}
 
-	@RequestMapping(method=RequestMethod.GET, produces={MediaType.TEXT_HTML_VALUE})
-	public String getOrdersPage(Model model) {
-		model.addAttribute("order", new Order());
-		model.addAttribute("orders", orderService.listOrders());
-		return "orders";
-	}
-
-	@RequestMapping(value="{orderId}", method=RequestMethod.GET, produces={MediaType.APPLICATION_JSON_VALUE})
+	@RequestMapping(value="{orderId}", method=RequestMethod.GET)
 	public @ResponseBody Order getOrder(@PathVariable Integer orderId) {
 		Order order = orderService.findOrder(orderId);
 		if (order == null) {
 			throw new ResourceNotFoundException(orderId);
 		}
 		return order;
-	}
-	
-	@RequestMapping(value="{orderId}", method=RequestMethod.GET, produces={MediaType.TEXT_HTML_VALUE})
-	public String getOrderPage(@PathVariable Integer orderId, Model model) {
-		Order order = orderService.findOrder(orderId);
-		if (order == null) {
-			throw new ResourceNotFoundException(orderId);
-		}
-		model.addAttribute("order", order);
-		
-		Invoice invoice;
-		try {
-			invoice = invoiceService.findInvoice(order.getId());
-		} catch (ApiException ae) {
-			// No match
-			invoice = new Invoice();
-		}
-		model.addAttribute("invoice", invoice);		
-		
-		return "order";
 	}
 	
 	@RequestMapping(value="{orderId}", method=RequestMethod.DELETE)

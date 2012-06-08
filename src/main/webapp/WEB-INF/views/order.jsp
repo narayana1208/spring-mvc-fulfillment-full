@@ -20,20 +20,20 @@
 			<h2>
 				Order <c:out value="${order.orderId}"/>
 			</h2>
-			<div class="span-12 last">
-				<h3>Invoice</h3>	
-				<p>Number: <c:out value="${invoice.number}"/></p>
-				<p>Description: <c:out value="${invoice.description}"/></p>
-				<p>Status: <c:out value="${invoice.status}"/></p>
-			</div>
-			<input id="delete" type="submit" value="Delete" />
+            <div class="span-12 last">
+                <h3>Invoice</h3>	
+            	<p>Number: <c:out value="${invoice.number}"/></p>
+            	<p>Description: <c:out value="${invoice.description}"/></p>
+            	<p>Status: <c:out value="${invoice.status}"/></p>
+            </div> 
+            <a href="javascript:history.back()">Back</a> <input id="delete" type="submit" value="Delete" />
 		</div>	
 	</body>
 	<script>
 	$("#delete").click(function() {
 		$.deleteJSON("${order.orderId}", function(data) {
 			alert("Deleted order ${order.orderId}");
-			location.href = "/order";
+			location.href = "/orderui";
 		}, function(data) {
 			alert("Error deleting order ${order.orderId}");
 		});

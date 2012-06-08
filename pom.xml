@@ -162,8 +162,7 @@
 			<artifactId>commons-dbcp</artifactId>
 			<version>1.4</version>
 		</dependency>
-		
-		<!-- Force.com access -->
+        <!-- Force.com access -->
         <dependency>
             <groupId>com.force.api</groupId>
             <artifactId>force-rest-api</artifactId>
