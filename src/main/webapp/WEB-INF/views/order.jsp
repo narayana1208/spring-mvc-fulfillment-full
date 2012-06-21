@@ -31,7 +31,7 @@
 	</body>
 	<script>
 	$("#delete").click(function() {
-		$.deleteJSON("${order.orderId}", function(data) {
+		$.deleteJSON("/order/${order.orderId}", function(data) {
 			alert("Deleted order ${order.orderId}");
 			location.href = "/orderui";
 		}, function(data) {
